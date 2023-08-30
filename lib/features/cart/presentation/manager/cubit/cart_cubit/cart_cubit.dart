@@ -58,7 +58,9 @@ class CartCubit extends Cubit<CartStates> {
     } else {
       for (ProductEntity productEntity in carts.values.toList()) {
         isCart[productEntity.id] = true;
-        totalCartPrice += productEntity.price;
+        totalCartPrice += productEntity.newPrice != null
+            ? productEntity.newPrice!
+            : productEntity.price;
         countOrProduct[productEntity.id] = 1;
         keys.addAll({
           productEntity.id: carts.keys.toList()[index++],
